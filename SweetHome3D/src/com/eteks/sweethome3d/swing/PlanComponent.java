@@ -2007,7 +2007,30 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
    * Prints this component plan at the scale given in the home print attributes or at a scale 
    * that makes it fill <code>pageFormat</code> imageable size if this attribute is <code>null</code>.
    */
+  @Override
   public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
+      Level original = this.home.getSelectedLevel();
+      try{
+          List<Level> levels = this.home.getLevels();
+          int viewableCount = 0;
+          for (int i = 0; i < levels.size(); i++) {
+              Level level = levels.get(i);
+              if (!level.isViewable()) {
+                  continue;
+              }
+              if (viewableCount == pageIndex) {
+                  this.home.setSelectedLevel(level);
+                  return printSelectedLevel(g, pageFormat, 0);
+              }
+              viewableCount+= 1;
+          }
+          return NO_SUCH_PAGE;
+      } finally {
+          this.home.setSelectedLevel(original);
+      }
+  }
+
+  public int printSelectedLevel(Graphics g, PageFormat pageFormat, int pageIndex) {
     List<Selectable> printedItems = getPaintedItems(); 
     Rectangle2D printedItemBounds = getItemsBounds(g, printedItems);
     if (printedItemBounds != null) {
