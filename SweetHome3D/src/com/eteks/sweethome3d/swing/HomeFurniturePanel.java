@@ -80,7 +80,6 @@ public class HomeFurniturePanel extends JPanel implements DialogView {
   private JSpinner                depthSpinner;
   private JLabel                  heightLabel;
   private JSpinner                heightSpinner;
-  private JLabel                  volumeLabel;
   private JCheckBox               keepProportionsCheckBox;
   private NullableCheckBox        mirroredModelCheckBox;
   private JRadioButton            defaultColorAndTextureRadioButton;
