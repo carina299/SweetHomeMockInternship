@@ -86,7 +86,6 @@ public class CatalogPieceOfFurniture implements Comparable<CatalogPieceOfFurnitu
    * @param width  the width in centimeters of the new piece
    * @param depth  the depth in centimeters of the new piece
    * @param height  the height in centimeters of the new piece
-   * @param volume the volume in centimeters cube of the new piece
    * @param movable if <code>true</code>, the new piece is movable
    * @param doorOrWindow if <code>true</code>, the new piece is a door or a window
    * @deprecated As of version 1.7, use constructor without <code>doorOrWindow</code> 
